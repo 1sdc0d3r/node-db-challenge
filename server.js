@@ -11,8 +11,16 @@ server.use(express.json());
 server.use(morgan("combined"));
 server.use(helmet());
 
+//* custom middleware
+const {
+  validateProjectId,
+  validateResource,
+  validateProject,
+  validateTask
+} = require("./api/middleware");
+
 //* Resources
-server.post("/api/resources", (req, res) => {
+server.post("/api/resources", validateResource, (req, res) => {
   const resource = req.body;
   db.insert("Resource", resource)
     .then(newResource => res.status(201).json(newResource))
@@ -35,7 +43,7 @@ server.get("/api/resources", (req, res) => {
 });
 
 //* Projects
-server.post("/api/projects", (req, res) => {
+server.post("/api/projects", validateProject, (req, res) => {
   const project = req.body;
   db.insert("Project", project)
     .then(newProject => res.status(201).json(newProject))
@@ -57,7 +65,7 @@ server.get("/api/projects", (req, res) => {
     );
 });
 
-server.get("/api/projects/:id", async (req, res) => {
+server.get("/api/projects/:id", validateProjectId, async (req, res) => {
   const { id } = req.params;
   const project = await db
     .getById("Project", id)
@@ -96,7 +104,7 @@ server.get("/api/projects/:id", async (req, res) => {
 });
 
 //* Tasks
-server.post("/api/tasks", (req, res) => {
+server.post("/api/tasks", validateTask, (req, res) => {
   const task = req.body;
   db.insert("Task", task)
     .then(newTask => res.status(201).json(newTask))

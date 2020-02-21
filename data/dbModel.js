@@ -12,6 +12,9 @@ function get(table) {
 }
 
 function getById(table, id) {
+  //   if (table === "Task") {
+  //     return db("Task").where({ project_id: id });
+  //   }
   return db(table).where({ id });
 }
 
