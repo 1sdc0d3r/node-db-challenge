@@ -39,12 +39,16 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 Demonstrate your understanding of this week's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] Explain the difference between `Relational Databases` and `SQL`.
+      SQL is the language that selects data from the database tables. Relational Databases are DB that contain multiple tables that rely on one another to hold complete data
 
 - [ ] Why do tables need a `primary key`?
+      to identify the 'index or id'
 
 - [ ] What is the name given to a table column that references the primary key on another table.
+      'id'
 
 - [ ] What do we need in order to have a _many to many_ relationship between two tables.
+      'foreign keys', linking table like a directory in Recipe Book
 
 ## Minimum Viable Product
 
@@ -53,15 +57,18 @@ Take the steps necessary to complete the project from scratch. Start by initiali
 Complete the following tasks:
 
 - [ ] Design the data model and use _knex migrations_ to create the database and tables needed to satisfy the following business rules:
+
   - [ ] a `project` can have multiple `tasks`.
   - [ ] a `task` belongs to only one `project`.
   - [ ] a `project` can use multiple `resources`. Example of `resources` are: computer, conference room, microphone, delivery van.
   - [ ] the same `resource` can be used in multiple `projects`.
+
   - [ ] when adding `projects` the client must provide a name, the description is optional.
   - [ ] when adding `resources` the client must provide a name, the description is optional.
   - [ ] when adding a `task` the client must provide a description, the notes are optional.
   - [ ] when adding a `task` the client must provide the `id` of an existing project.
   - [ ] for `projects` and `tasks` if no value is provided for the `completed` property, the API should provide a default value of `false`.
+
 - [ ] Build an API with endpoints for:
   - [ ] adding resources.
   - [ ] retrieving a list of resources.
